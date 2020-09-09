@@ -1,0 +1,266 @@
+package pageaction;
+
+import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.interactions.Actions;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
+import org.sikuli.script.SikuliException;
+import org.testng.Assert;
+
+import pagelocators.SaperionHomepagelocator;
+import util.WiniumDriverHelper;
+
+/**
+ *
+ * This test class works as Action class of corresponding behaviour related to Saperion homepage.
+ *
+ * @author swghosh
+ */
+
+public class HomepageActions {
+
+	SaperionHomepagelocator saperionHomepagelocator;
+
+	public void Homepagevalidation() throws InterruptedException {
+		saperionHomepagelocator = new SaperionHomepagelocator();
+		Thread.sleep(10000);
+		boolean flag = saperionHomepagelocator.Saperionsymbol.isDisplayed();
+		System.out.println(flag);
+		Assert.assertEquals(flag, true);
+	}
+
+	public void designbuttonvalidation() {
+		saperionHomepagelocator = new SaperionHomepagelocator();
+		Assert.assertEquals(saperionHomepagelocator.Designbutton.isDisplayed(), true);
+
+	}
+
+	public void chooseDatatypeIndexfield() {
+
+		saperionHomepagelocator.choosedatatype.click();
+	}
+
+	public void chooseDatatypeAsInteger() throws SikuliException {
+		Screen screen = new Screen();
+		Pattern integer = new Pattern(
+				"C:\\Users\\pchatterjee\\Documents\\RichClient\\src\\test\\resource\\Images\\Integer_1.png");
+		screen.wait(integer, 3000);
+		screen.click(integer);
+	}
+
+	public void designbuttonClick() {
+
+		saperionHomepagelocator.Designbutton.click();
+	}
+
+
+
+	public void createbuttonClick() {
+		saperionHomepagelocator.createbutton.click();
+
+	}
+
+	public void okbuttonClick() throws InterruptedException{
+		saperionHomepagelocator.DefinitionTypeOKbutton.click();
+		Thread.sleep(3000);
+	}
+
+	public void indexcolumnClick() {
+		saperionHomepagelocator.indexcolumns.click();
+
+	}
+
+	public void startButtonClick() {
+		saperionHomepagelocator.startbutton.click();
+	}
+
+	public void newbuttonClick() {
+		saperionHomepagelocator.NewButton.click();
+
+	}
+
+	public void enterindexName(String fieldname) {
+		saperionHomepagelocator.NamefieldEdit.sendKeys(fieldname);
+	}
+
+	public void indextableNameenter(String tablename) {
+		saperionHomepagelocator.fileName.sendKeys(tablename);
+	}
+
+	public void createsearchForm() {
+
+		saperionHomepagelocator.CreateSearchForm.click();
+
+	}
+
+	public void createindexForm() {
+		saperionHomepagelocator.CreateIndexForm.click();
+	}
+
+	public void createbuttonclicksearch() {
+		saperionHomepagelocator.createbuttonsearch.click();
+	}
+
+	public void saveform() {
+		saperionHomepagelocator.saveasform.click();
+	}
+
+	public void enterqueryformname(String searchform) {
+		saperionHomepagelocator.fileName.sendKeys(searchform);
+	}
+
+	public void enterindexformname(String indexform) {
+		saperionHomepagelocator.fileName.sendKeys(indexform);
+	}
+
+	public void formbuttonClick() {
+		saperionHomepagelocator.formbuttonsearch.click();
+	}
+
+	public void workspaceclick() {
+		saperionHomepagelocator.workspacebutton.click();
+
+	}
+
+	public void createapplicationClick() throws FindFailed {
+		Screen screen = new Screen();
+		Pattern pattern = new Pattern(
+				"C:\\Users\\pchatterjee\\Documents\\RichClient\\src\\test\\resource\\Images\\WorkspaceButton.PNG");
+		screen.rightClick(pattern);
+
+		Pattern createappli = new Pattern(
+				"C:\\Users\\pchatterjee\\Documents\\RichClient\\src\\test\\resource\\Images\\CreateApplicationButton.png");
+		screen.wait(createappli, 2000);
+		screen.click();
+
+	}
+
+	public void enterapplicationDetails(String appname, String indexform, String searchform) {
+		saperionHomepagelocator.EditApplicationDescriptionfield.sendKeys(appname);
+
+		saperionHomepagelocator.searchQueryForm.click();
+		saperionHomepagelocator.fileName.sendKeys(searchform);
+		saperionHomepagelocator.okbuttonindex.click();
+		saperionHomepagelocator.searchIndexForm.click();
+		saperionHomepagelocator.fileName.sendKeys(indexform);
+		saperionHomepagelocator.okbuttonindex.click();
+
+	}
+
+	public void CreateapplicationOkbuttonClick() {
+
+		saperionHomepagelocator.okbuttonEditapplication.click();
+	}
+
+	public void clickimportButton() {
+		saperionHomepagelocator = new SaperionHomepagelocator();
+		saperionHomepagelocator.importbutton.click();
+	}
+
+	public void clickloadFiles() {
+
+		saperionHomepagelocator.loadfiles.click();
+	}
+
+	public void validateIndextable(String ddcname) throws InterruptedException{
+		saperionHomepagelocator.loadbutton.click();
+
+		saperionHomepagelocator.fileName.sendKeys(ddcname);
+		saperionHomepagelocator.okbuttonindex.click();
+		Thread.sleep(5000);
+		Assert.assertTrue(saperionHomepagelocator.newwindow.isDisplayed());
+	}
+
+	public void clickLookupTable()
+	{
+		//ComboBox definitionType=new ComboBox(saperionHomepagelocator.DefinitionType);
+		saperionHomepagelocator.DefinitionType.click();
+		//definitionType.expand();
+		saperionHomepagelocator.LookupTable.click();
+
+	}
+
+	public void clickResult()
+	{
+
+		saperionHomepagelocator.clickResult.click();
+	}
+
+	public void resultPaneRightClick()
+	{
+		Actions actions=new Actions(WiniumDriverHelper.winiumdriver);
+		actions.contextClick(saperionHomepagelocator.resultpane).build().perform();
+		saperionHomepagelocator.resultpaneNew.click();
+	}
+
+	public void newLookupResult()
+	{
+		saperionHomepagelocator.resultpaneEdit.click();
+	}
+
+	public void EditLookupResult()
+	{
+		saperionHomepagelocator.resultpaneEdit.click();
+	}
+
+	public void enterLookupValueName()
+	{
+		saperionHomepagelocator.enterLookupValueName.sendKeys("one");
+	}
+
+	public void addLookupToIndexTable(String appname, String searchform)
+	{
+		saperionHomepagelocator.addLookupToIndexTable.click();
+		saperionHomepagelocator.searchLookupName.click();
+		saperionHomepagelocator.enterLookupName.sendKeys(appname);
+		saperionHomepagelocator.okbuttonindex.click();
+		saperionHomepagelocator.searchLookupForm.click();
+		saperionHomepagelocator.enterLookupName.sendKeys(searchform);
+		saperionHomepagelocator.okbuttonindex.click();
+		saperionHomepagelocator.addLookupMainField.click();
+
+// WiniumDriverHelper.winiumdriver.findElementByName(indexfieldname).click();
+
+	}
+	public void chooseMainFieldasId() throws SikuliException {
+		Screen screen = new Screen();
+		Pattern id = new Pattern(
+				"C:\\Users\\pchatterjee\\Documents\\RichClient\\src\\test\\resource\\Images\\lookupfieldSelection.png");
+		screen.wait(id, 3000);
+		screen.click(id);
+	}
+
+	//	public void lookuptableNameenter()
+//	{
+//		saperionHomepagelocator.fileName.sendKeys("Lookup3");
+//	}
+//
+//	public void enterlookupqueryformname()
+//	{
+//		saperionHomepagelocator.fileName.sendKeys("Lookup_q3");
+//	}
+//
+//	public void enterlookupindexformname()
+//	{
+//		saperionHomepagelocator.fileName.sendKeys("Lookup_i3");
+//	}
+//
+	public void Closedialoguebox()
+	{
+		saperionHomepagelocator.Closedialoguebox.click();
+
+	}
+
+	public void ClickFolderTab()
+	{
+		saperionHomepagelocator.folderTab.click();
+
+	}
+	public void ClickCreateApplication()
+	{
+		saperionHomepagelocator.createApplication.click();
+
+	}
+
+}

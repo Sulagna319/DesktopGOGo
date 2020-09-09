@@ -1,0 +1,235 @@
+package pageaction;
+
+import org.apache.commons.lang.ObjectUtils;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Match;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
+import pagelocators.AnnotationPagelocators;
+import pageaction.HomepageActions;
+import pagelocators.SaperionHomepagelocator;
+import util.WiniumDriverHelper;
+import static org.testng.Assert.assertNotNull;
+
+
+
+public class AnnotationPageActions {
+
+    AnnotationPagelocators annotationpagelocators;
+    SaperionHomepagelocator homepagelocator;
+
+
+
+    public void clickResult(){
+        annotationpagelocators =new AnnotationPagelocators();
+        annotationpagelocators.resultbutton.click();
+
+    }
+
+    public void findDocument(String name) throws FindFailed, InterruptedException {
+       Screen screen=new Screen();
+       Pattern search = new Pattern("src/test/resource/Images/SearchName.PNG");
+        annotationpagelocators =new AnnotationPagelocators();
+        annotationpagelocators.ClearBox.click();
+       Thread.sleep(3000);
+       screen.type(search,name);
+        //annotationpagelocators.SearchBox.sendKeys(name);
+        annotationpagelocators.resultbutton.click();
+        annotationpagelocators.ClearBox.click();
+
+    }
+
+    public void editJPG(){
+        annotationpagelocators =new AnnotationPagelocators();
+        annotationpagelocators.EditImage.click();
+
+    }
+
+    public void selectStamp() throws FindFailed {
+        annotationpagelocators =new AnnotationPagelocators();
+        Screen screen=new Screen();
+        Pattern stamp = new Pattern("src/test/resource/Images/StampIcon.PNG");
+        Pattern stampImage = new Pattern("src/test/resource/Images/StampStar1.PNG");
+        screen.exists(stamp);
+        screen.click(stamp);
+        screen.doubleClick(stampImage);
+        annotationpagelocators.imageStampin.click();
+
+    }
+    public void saveFile(){
+        annotationpagelocators =new AnnotationPagelocators();
+        annotationpagelocators.closeButton.click();
+        annotationpagelocators.yesSave.click();
+        annotationpagelocators.OKSave.click();
+    }
+
+
+
+    public void selectNoteMode(String text) throws FindFailed {
+        annotationpagelocators =new AnnotationPagelocators();
+        Screen screen=new Screen();
+        Pattern noteMode = new Pattern("src/test/resource/Images/NoteMode1.PNG");
+        screen.exists(noteMode);
+        screen.click(noteMode);
+        Actions ac=new Actions(WiniumDriverHelper.winiumdriver);
+        //annotationpagelocators.imageStampin.click();
+        ac.moveByOffset(500,300).click().build().perform();
+        annotationpagelocators.noteText.sendKeys(text);
+        annotationpagelocators.OKSave.click();
+
+    }
+
+
+
+    public void rotation(String degree) throws FindFailed {
+
+        if (degree.equals("90")){
+
+            Screen screen=new Screen();
+            Pattern rotation90 = new Pattern("src/test/resource/Images/rotation90.PNG");
+            screen.exists(rotation90);
+            screen.click(rotation90);
+
+        }
+        else if (degree.equals("180")){
+
+            Screen screen=new Screen();
+            Pattern rotation180 = new Pattern("src/test/resource/Images/rotation180.PNG");
+            screen.exists(rotation180);
+            screen.click(rotation180);
+        }
+
+        else if (degree.equals("270")){
+
+            Screen screen=new Screen();
+            Pattern rotation270 = new Pattern("src/test/resource/Images/rotation270.PNG");
+            screen.exists(rotation270);
+            screen.click(rotation270);
+        }
+        else System.out.println("Your input angle is not valid");
+
+    }
+
+
+    public void selectOption(String op) {
+
+        annotationpagelocators =new AnnotationPagelocators();
+
+        if (op.equalsIgnoreCase("Edit")){
+
+            annotationpagelocators.EditImage.click();
+            assertNotNull(annotationpagelocators.EditTab);
+            annotationpagelocators.closeButton.click();
+            System.out.println("Edit option working fine");
+
+        }
+        else if(op.equalsIgnoreCase("View")){
+
+            annotationpagelocators.ViewImage.click();
+            assertNotNull(annotationpagelocators.ViewTab);
+            annotationpagelocators.closeButton.click();
+            System.out.println("View option working fine");
+
+        }
+        else if  (op.equalsIgnoreCase("Print")){
+
+            annotationpagelocators.PrintImage.click();
+            assertNotNull(annotationpagelocators.PrintTab);
+            annotationpagelocators.CancelTab.click();
+            System.out.println("Print option working fine");
+
+        }
+        else if(op.equalsIgnoreCase("Save")){
+
+            annotationpagelocators.SaveImage.click();
+            assertNotNull(annotationpagelocators.SaveAsTab);
+            annotationpagelocators.CancelTab.click();
+            System.out.println("SaveAs option working fine");
+
+        }
+        else if   (op.equalsIgnoreCase("Index")){
+
+            annotationpagelocators.IndexImage.click();
+            annotationpagelocators.IndexType.clear();
+            annotationpagelocators.IndexType.sendKeys("jpg_new");
+            annotationpagelocators.OKSave.click();
+            annotationpagelocators.OKSave.click();
+            annotationpagelocators.resultbutton.click();
+            Screen screen=new Screen();
+            Match IndexResult=screen.exists("src/test/resource/Images/IndexSaveResult.PNG");
+            assertNotNull(IndexResult);
+            System.out.println("Index option working fine");
+
+        }
+        else if  (op.equalsIgnoreCase("Delete")){
+
+            annotationpagelocators.DeleteImage.click();
+            assertNotNull(annotationpagelocators.DeleteDialogueMsg);
+            annotationpagelocators.yesSave.click();
+            Screen screen=new Screen();
+            Pattern delete = new Pattern("src/test/resource/Images/DeleteBin.PNG");
+            Match m = screen.exists(delete);
+
+            if(m != null)
+            {
+                System.out.println("Data deleted!!Baamm!!");
+            }
+            else
+            {
+                System.out.println("Not deleted yett!");
+            }
+
+
+        }
+        else if  (op.equalsIgnoreCase("Security")){
+
+            annotationpagelocators.SecurityImage.click();
+            assertNotNull(annotationpagelocators.SecurityTab);
+            annotationpagelocators.CancelTab.click();
+            System.out.println("Security option working fine");
+
+
+        }
+        else if  (op.equalsIgnoreCase("CheckOut")){
+
+            annotationpagelocators.CheckOutImage.click();
+            Screen screen=new Screen();
+            Match CheckOutSign =screen.exists("src/test/resource/Images/CheckOutSign.PNG");
+            assertNotNull(CheckOutSign);
+            System.out.println("Document has been Checked Out.Option working fine");
+        }
+        else System.out.println("Your input is not valid");
+
+    }
+
+    public void leftClick(String doc) throws FindFailed {
+
+        annotationpagelocators =new AnnotationPagelocators();
+        //annotationpagelocators.SearchBox.clear();
+        Screen screen=new Screen();
+        if (doc.equalsIgnoreCase("jpg")) {
+            {
+                Pattern jpg = new Pattern("src/test/resource/Images/jpgImage.PNG");
+                Pattern jpg2 = new Pattern("src/test/resource/Images/jpg_anno.PNG");
+                Match jpg_match = screen.exists("src/test/resource/Images/jpgImage.PNG");
+                Match jpg2_match= screen.exists("src/test/resource/Images/jpganno1.PNG");
+
+                if (jpg_match != null) {
+                    screen.exists(jpg);
+                    screen.rightClick(jpg);
+                } else if (jpg2_match != null)
+                {
+                    screen.exists(jpg2);
+                    screen.rightClick(jpg2);
+                }
+
+
+            }
+
+
+    }}
+
+
+}

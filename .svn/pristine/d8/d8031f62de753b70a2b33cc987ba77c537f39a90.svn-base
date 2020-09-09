@@ -1,0 +1,82 @@
+   #//////////////sulagna/////////////
+Feature: Desktop rich client Annotation functionality
+
+  @AnnotationValidation
+  @StampCheckjpg
+  Scenario: Validate the functionality of Stamp annotation in jpg file
+    Given User is on the Saperion Homepage
+    When DDC named "DDC" is present in Homepage
+    And Search for file in the ddc with name "jpg"
+    Then Right click on the "jpg" file
+    Then Click on the file and edit
+    Then Click on stamp and select stamp
+    And save file with change
+
+
+  @degreeRotation
+  Scenario: Validate the functionality of degree rotation annotation in jpg file
+    Given User is on the Saperion Homepage
+    When DDC named "DDC" is present in Homepage
+    And Search for file in the ddc with name "jpg"
+    Then Right click on the "jpg" file
+    Then Click on the file and edit
+    Then Click on "90" degree rotation
+    And save file with change
+
+
+  @jpgNoteModeCheck
+  Scenario: Validate the functionality of note marker annotation in jpg file
+    Given User is on the Saperion Homepage
+    When DDC named "DDC" is present in Homepage
+    And Search for file in the ddc with name "jpg"
+    Then Right click on the "jpg" file
+    Then Click on the file and edit
+    Then Click on note mode and write "hello from saperion" on note
+    And save file with change
+
+
+
+
+  @documentContextClick1
+  Scenario Outline: Validate the functionality of context click on a document
+    Given User is on the Saperion Homepage
+    When DDC named "DDC" is present in Homepage
+    And Search for file in the ddc with name "jpg"
+    Then Right click on the "jpg" file
+    And Select option "<Option>"
+    Examples:
+      | Option |
+      | Edit   |
+      | View   |
+      | Print  |
+      | Save   |
+      | Security|
+
+  @documentContextClick2
+  Scenario: Validate the functionality of context click Index on a document
+    Given User is on the Saperion Homepage
+    When DDC named "DDC" is present in Homepage
+    And Search for file in the ddc with name "jpg"
+    Then Right click on the "jpg" file
+    And Select option "Index"
+
+  @documentContextClick3
+  Scenario: Validate the functionality of context click Delete on a document
+    Given User is on the Saperion Homepage
+    When DDC named "DDC" is present in Homepage
+    And Search for file in the ddc with name "jpg"
+    Then Right click on the "jpg" file
+    And Select option "Delete"
+
+  @documentContextClick4
+  Scenario: Validate the functionality of context click CheckOut on a document
+    Given User is on the Saperion Homepage
+    When DDC named "DDC" is present in Homepage
+    And Search for file in the ddc with name "doc"
+    Then Right click on the "doc" file
+    And Select option "CheckOut"
+
+
+
+
+	#////////////sulagna////////////

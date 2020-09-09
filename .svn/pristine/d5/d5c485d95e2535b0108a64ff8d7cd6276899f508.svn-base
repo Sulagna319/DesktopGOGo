@@ -1,0 +1,48 @@
+package pagelocators;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+
+import util.WiniumDriverHelper;
+
+/**
+ *
+ * This test class works as object repository class of Saperion Login Page locator.
+ *
+ * @author swghosh
+ */
+
+public class LoginPageLocators extends WiniumDriverHelper {
+
+	public LoginPageLocators() {
+
+		PageFactory.initElements(winiumdriver, this);
+	}
+
+	@FindBy(how = How.ID, using = "107")
+	public WebElement User;
+
+	@FindBy(how = How.ID, using = "110")
+	public WebElement Password;
+
+	@FindBy(how = How.ID, using = "102")
+	public WebElement Dropdown;
+
+	@FindBy(how = How.NAME, using = "Universal/Administration")
+	public WebElement selectrole;
+
+	@FindBy(how = How.ID, using = "1")
+	public WebElement okbutton;
+
+	@FindBy(how = How.ID, using = "2")
+	public WebElement cancelbutton;
+
+	@FindBy(how = How.NAME, using = "SAPERION Client - 1 running window")
+	public WebElement openclient;
+
+	@FindBy(how=How.ID,using="108")
+	public WebElement client;
+
+}

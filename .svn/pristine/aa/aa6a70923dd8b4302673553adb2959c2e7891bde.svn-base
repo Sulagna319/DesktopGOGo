@@ -1,0 +1,100 @@
+package stepdef;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import org.sikuli.script.FindFailed;
+import pageaction.AnnotationPageActions;
+import pageaction.HomepageActions;
+import pagelocators.AnnotationPagelocators;
+import util.WiniumDriverHelper;
+
+public class AnnotationStepDef {
+
+    public HomepageActions homepageactions;
+    public AnnotationPageActions annotationpageaction;
+    WiniumDriverHelper winiumDriverHelper = new WiniumDriverHelper();
+
+
+    public AnnotationStepDef() {
+        homepageactions = new HomepageActions();
+        annotationpageaction = new AnnotationPageActions();
+    }
+
+
+    @When("^DDC named \"([^\"]*)\" is present in Homepage$")
+    public void ddc_named_something_is_present_in_homepage(String ddc) throws Throwable {
+        homepageactions.findDDC(ddc);
+    }
+    @Then("^User Click on Result button of the DDC present$")
+    public void user_click_on_result_button_of_the_ddc_present() throws Throwable {
+            annotationpageaction.clickResult();
+
+    }
+    @And("^Search for file in the ddc with name \"([^\"]*)\"$")
+    public void search_for_jpg_file_in_the_ddc_with_name_something(String s) throws Throwable {
+            annotationpageaction.findDocument(s);
+    }
+
+    @Then("^Click on the file and edit$")
+    public void click_on_the_jpg_file_and_edit() throws Throwable {
+        annotationpageaction.editJPG();
+    }
+
+    @Then("Click on stamp and select stamp")
+    public void click_On_Stamp_And_Select_Stamp() throws FindFailed {
+        annotationpageaction.selectStamp();
+
+    }
+
+    @And("^save file with change")
+    public void save_file_with_change() throws Throwable {
+        annotationpageaction.saveFile();
+
+    }
+
+
+
+
+
+    @Then("^Click on note mode and write \"([^\"]*)\" on note$")
+    public void click_on_note_mode_and_write_something_on_note(String strArg1) throws Throwable {
+         annotationpageaction.selectNoteMode(strArg1);
+         }
+
+
+
+    @Then("^Click on \"([^\"]*)\" degree rotation$")
+    public void click_on_something_degree_rotation(String angle) throws Throwable {
+
+        annotationpageaction.rotation(angle);
+
+
+    }
+
+    @And("save the rotated file")
+    public void saveTheRotatedFile() {
+        annotationpageaction.saveFile();
+    }
+
+
+    @Then("^Right click on the \"([^\"]*)\" file$")
+    public void left_click_on_the_something_file(String doc) throws Throwable {
+        annotationpageaction.leftClick(doc);
+        
+    }
+
+
+
+    @And("^Select option \"([^\"]*)\"$")
+    public void select_option_something(String option) throws Throwable {
+      annotationpageaction.selectOption(option);
+      Thread.sleep(5000);
+
+
+
+    }
+
+
+}
